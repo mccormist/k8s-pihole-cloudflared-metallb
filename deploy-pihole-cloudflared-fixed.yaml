@@ -45,7 +45,7 @@ spec:
         - name: WEBPASSWORD
           value: admin
         - name: ServerIP
-          value: 10.99.2.200
+          value: 10.99.2.201
         - name: DNS1
           value: 127.0.0.1#54 # Cloudflared runs on port 54
         - name: DNS2
@@ -151,8 +151,6 @@ metadata:
     app: pihole
   name: pihole-udp
   namespace: pihole-dns 
-  annotations:
-    metallb.universe.tf/allow-shared-ip: dns
 spec:
   ports:
   - name: dns-udp
@@ -176,8 +174,6 @@ metadata:
     app: pihole
   name: pihole
   namespace: pihole-dns 
-  annotations:
-    metallb.universe.tf/allow-shared-ip: dns
 spec:
   ports:
   - name: pihole-http
@@ -195,5 +191,5 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 10.99.2.200
+  loadBalancerIP: 10.99.2.201
   type: LoadBalancer
