@@ -41,11 +41,11 @@ spec:
           value: 127.0.0.1:3000
       - env:
         - name: TZ
-          value: "Europe/Paris"
+          value: "Europe/London"
         - name: WEBPASSWORD
           value: admin
         - name: ServerIP
-          value: 192.168.1.200
+          value: 10.99.2.200
         - name: DNS1
           value: 127.0.0.1#54 # Cloudflared runs on port 54
         - name: DNS2
@@ -164,7 +164,7 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 192.168.1.200
+  loadBalancerIP: 
   type: LoadBalancer
 ---
 apiVersion: v1
@@ -191,5 +191,5 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 192.168.1.201
+  loadBalancerIP: 
   type: LoadBalancer
