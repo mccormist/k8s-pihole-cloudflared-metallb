@@ -151,6 +151,8 @@ metadata:
     app: pihole
   name: pihole-udp
   namespace: pihole-dns 
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns
 spec:
   ports:
   - name: dns-udp
@@ -164,7 +166,7 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 
+  loadBalancerIP: 10.99.2.200
   type: LoadBalancer
 ---
 apiVersion: v1
@@ -174,6 +176,8 @@ metadata:
     app: pihole
   name: pihole
   namespace: pihole-dns 
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns
 spec:
   ports:
   - name: pihole-http
@@ -191,5 +195,5 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 
+  loadBalancerIP: 10.99.2.200
   type: LoadBalancer
