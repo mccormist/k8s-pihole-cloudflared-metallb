@@ -23,6 +23,7 @@ spec:
       dnsPolicy: None
       dnsConfig:
         nameservers:
+          - 127.0.0.1
           - 1.1.1.1
           - 1.0.0.1
       containers:
@@ -30,10 +31,10 @@ spec:
         imagePullPolicy: IfNotPresent
         name: cloudflared
         ports:
-        - containerPort: 54
+        - containerPort: 5054
           name: dns
           protocol: TCP
-        - containerPort: 54
+        - containerPort: 5054
           name: dns-udp
           protocol: UDP
         env:
@@ -47,9 +48,9 @@ spec:
         - name: ServerIP
           value: 10.99.2.220
         - name: DNS1
-          value: 127.0.0.1#54 # Cloudflared runs on port 54
+          value: 127.0.0.1#5054 # Cloudflared runs on port 54
         - name: DNS2
-          value: 127.0.0.1#54 # Cloudflared runs on port 54
+          value: 127.0.0.1#5054 # Cloudflared runs on port 54
         image: pihole/pihole:latest
         imagePullPolicy: IfNotPresent
         name: pihole
