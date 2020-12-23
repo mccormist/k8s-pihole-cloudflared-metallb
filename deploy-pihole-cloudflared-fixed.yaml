@@ -39,14 +39,14 @@ spec:
           protocol: UDP
         env:
         - name: TUNNEL_METRICS
-          value: 127.0.0.1:3000
+          value: 127.0.0.1:7001
       - env:
         - name: TZ
           value: "Europe/London"
         - name: WEBPASSWORD
           value: admin
         - name: ServerIP
-          value: 10.99.2.201
+          value: 10.99.2.200
         - name: DNS1
           value: 127.0.0.1#54 # Cloudflared runs on port 54
         - name: DNS2
@@ -150,29 +150,6 @@ kind: Service
 metadata:
   labels:
     app: pihole
-  name: pihole-udp
-  namespace: pihole-dns 
-spec:
-  ports:
-  - name: dns-udp
-    port: 53
-    protocol: UDP
-    targetPort: 53
-  - name: client-udp
-    port: 67
-    protocol: UDP
-    targetPort: 67
-  selector:
-    app: pihole
-  externalTrafficPolicy: Local
-  loadBalancerIP: 10.99.2.200
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: pihole
   name: pihole
   namespace: pihole-dns 
 spec:
@@ -189,8 +166,16 @@ spec:
     port: 53
     protocol: TCP
     targetPort: 53
+  - name: dns-udp
+    port: 53
+    protocol: UDP
+    targetPort: 53
+  - name: client-udp
+    port: 67
+    protocol: UDP
+    targetPort: 67
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 10.99.2.201
+  loadBalancerIP: 10.99.2.200
   type: LoadBalancer
