@@ -165,7 +165,7 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 10.99.2.200
+  loadBalancerIP: 10.99.2.220
   type: LoadBalancer
 ---
 apiVersion: v1
@@ -192,5 +192,5 @@ spec:
   selector:
     app: pihole
   externalTrafficPolicy: Local
-  loadBalancerIP: 10.99.2.201
+  loadBalancerIP: 10.99.2.222
   type: LoadBalancer
