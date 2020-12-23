@@ -30,22 +30,22 @@ spec:
         imagePullPolicy: IfNotPresent
         name: cloudflared
         ports:
-        - containerPort: 53
+        - containerPort: 54
           name: dns
           protocol: TCP
-        - containerPort: 67
+        - containerPort: 54
           name: dns-udp
           protocol: UDP
         env:
         - name: TUNNEL_METRICS
-          value: 127.0.0.1:3001
+          value: 127.0.0.1:3000
       - env:
         - name: TZ
           value: "Europe/London"
         - name: WEBPASSWORD
           value: admin
         - name: ServerIP
-          value: 10.99.2.222
+          value: 10.99.2.220
         - name: DNS1
           value: 127.0.0.1#54 # Cloudflared runs on port 54
         - name: DNS2
