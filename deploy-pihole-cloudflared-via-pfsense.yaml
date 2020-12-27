@@ -99,8 +99,8 @@ metadata:
   name: pihole-custom-dnsmasq
   namespace: pihole-dns
 data:
-  customDnsEntries:
-    - address=/atomicmonkeyfinger.com/10.99.2.220
+  02-custom.conf: |
+    address=/atomicmonkeyfinger.com/10.99.2.220
 ---
 apiVersion: v1
 kind: ConfigMap
