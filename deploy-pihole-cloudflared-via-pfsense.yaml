@@ -30,6 +30,9 @@ spec:
       - image: pihole/pihole:latest
         imagePullPolicy: IfNotPresent
         name: pihole
+        resources:
+          limits:
+            memory: 1Gi
         env:
         - name: TUNNEL_METRICS
           value: 127.0.0.1:3001
