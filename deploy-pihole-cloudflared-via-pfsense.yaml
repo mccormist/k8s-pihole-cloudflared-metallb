@@ -11,7 +11,7 @@ metadata:
   name: pihole
   namespace: pihole-dns
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pihole
@@ -23,6 +23,7 @@ spec:
       dnsPolicy: None
       dnsConfig:
         nameservers:
+          - 127.0.0.1
           - 10.99.0.1
       containers:
       - image: visibilityspots/cloudflared
@@ -65,9 +66,6 @@ spec:
         - containerPort: 443
           name: pihole-ssl
           protocol: TCP
-        - containerPort: 67
-          name: client-udp
-          protocol: UDP
         volumeMounts:
         - mountPath: /etc/dnsmasq.d/02-custom.conf
           name: pihole-custom-dnsmasq
@@ -101,8 +99,8 @@ metadata:
   name: pihole-custom-dnsmasq
   namespace: pihole-dns
 data:
-  02-custom.conf: |
-    address=/foo.bar.com/192.168.1.29
+  customDnsEntries:
+    - address=/atomicmonkeyfinger.com/10.99.2.220
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -156,10 +154,6 @@ spec:
     port: 53
     protocol: UDP
     targetPort: 53
-  - name: client-udp
-    port: 67
-    protocol: UDP
-    targetPort: 67
   selector:
     app: pihole
   externalTrafficPolicy: Local
