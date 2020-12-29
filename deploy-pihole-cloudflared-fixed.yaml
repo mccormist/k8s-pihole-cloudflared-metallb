@@ -43,7 +43,7 @@ spec:
         - name: TZ
           value: "Europe/London"
         - name: WEBPASSWORD
-          value: admin
+          value: admin123
         - name: ServerIP
           value: 10.99.2.220
         - name: DNS1
