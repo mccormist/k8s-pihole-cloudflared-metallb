@@ -43,13 +43,19 @@ spec:
         - name: TZ
           value: "Europe/London"
         - name: WEBPASSWORD
-          value: admin
+          value: admin123
         - name: ServerIP
           value: 10.99.2.220
         - name: DNS1
           value: 127.0.0.1#5054 # Cloudflared runs on port 54
         - name: DNS2
-          value: 10.99.0.1
+          value: 127.0.0.1#5054 # Cloudflared runs on port 54
+        - name: CONDITIONAL_FORWARDING
+          value: "true"
+        - name: CONDITIONAL_FORWARDING_DOMAIN
+          value: "atomicmonkeyfinger.com"
+        - name: CONDITIONAL_FORWARDING_IP
+          value: 10.99.0.1     
         image: pihole/pihole:latest
         imagePullPolicy: IfNotPresent
         name: pihole
@@ -77,16 +83,16 @@ spec:
           mountPath: /etc/pihole/regex.list
           subPath: regex.list
         securityContext:
-          capabilities:        
+          capabilities:
             add:
-              - NET_ADMIN  
+              - NET_ADMIN
       restartPolicy: Always
       volumes:
         - name: pihole-adlists
           configMap:
             name: pihole-adlists
         - name: pihole-regex
-          configMap: 
+          configMap:
             name: pihole-regex
         - name: pihole-custom-dnsmasq
           configMap:
@@ -147,7 +153,7 @@ metadata:
   labels:
     app: pihole
   name: pihole-udp
-  namespace: pihole-dns 
+  namespace: pihole-dns
 spec:
   ports:
   - name: dns-udp
@@ -166,7 +172,7 @@ metadata:
   labels:
     app: pihole
   name: pihole
-  namespace: pihole-dns 
+  namespace: pihole-dns
 spec:
   ports:
   - name: pihole-http
