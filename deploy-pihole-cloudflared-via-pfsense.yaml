@@ -106,7 +106,7 @@ metadata:
   namespace: pihole-dns
 data:
   02-custom.conf: |
-    address=/foo.bar.com/192.168.1.29
+    rev-server=10.99.0.0/16,10.99.0.1
 ---
 apiVersion: v1
 kind: ConfigMap
